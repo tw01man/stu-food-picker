@@ -91,14 +91,14 @@ function rollAnimation(pool, winner) {
   function tick() {
     const randomShop = pool[Math.floor(Math.random() * pool.length)]
     resultCard.innerHTML = `
-      <div class="shop-name rolling">${randomShop.name}</div>
-      <div class="shop-canteen rolling">${randomShop.canteen}</div>
+      <div class="shop-name rolling">${escapeHtml(randomShop.name)}</div>
+      <div class="shop-canteen rolling">${escapeHtml(randomShop.canteen)}</div>
     `
     step++
     if (step >= totalSteps) {
       resultCard.innerHTML = `
-        <div class="shop-name">${winner.name}</div>
-        <div class="shop-canteen">${winner.canteen}</div>
+        <div class="shop-name">${escapeHtml(winner.name)}</div>
+        <div class="shop-canteen">${escapeHtml(winner.canteen)}</div>
       `
       isPicking = false
       pickBtn.disabled = false

@@ -84,8 +84,8 @@ async function loadData() {
 function renderCategories() {
   categoryCheckboxes.innerHTML = categories.map(cat => `
     <label>
-      <input type="checkbox" value="${cat.name}">
-      ${cat.name}
+      <input type="checkbox" value="${escapeHtml(cat.name)}">
+      ${escapeHtml(cat.name)}
     </label>
   `).join('')
 }
@@ -100,12 +100,12 @@ function renderTable() {
   }
   shopTableBody.innerHTML = filtered.map(shop => `
     <tr>
-      <td>${shop.name}</td>
-      <td>${shop.canteen}</td>
-      <td>${shop.categories.map(c => `<span class="tag">${c}</span>`).join('')}</td>
+      <td>${escapeHtml(shop.name)}</td>
+      <td>${escapeHtml(shop.canteen)}</td>
+      <td>${shop.categories.map(c => `<span class="tag">${escapeHtml(c)}</span>`).join('')}</td>
       <td class="actions">
-        <button class="edit-btn" onclick="openEditModal('${shop.id}')">编辑</button>
-        <button class="delete-btn" onclick="openDeleteModal('${shop.id}')">删除</button>
+        <button class="edit-btn" onclick="openEditModal('${String(shop.id).replace(/'/g, "\\'")}')">编辑</button>
+        <button class="delete-btn" onclick="openDeleteModal('${String(shop.id).replace(/'/g, "\\'")}')">删除</button>
       </td>
     </tr>
   `).join('')

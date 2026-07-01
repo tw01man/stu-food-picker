@@ -79,3 +79,9 @@ function onAuthChange(callback) {
 function getUser() {
   return client.auth.getUser()
 }
+
+function escapeHtml(str) {
+  const div = document.createElement('div')
+  div.textContent = str
+  return div.innerHTML
+}

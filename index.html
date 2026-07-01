@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今天吃啥？ — 汕大东海岸</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>今天吃啥？</h1>
+      <p>汕大东海岸校区 · 吃饭抽签器</p>
+    </header>
+
+    <div class="filter-bar" id="filterBar"></div>
+
+    <section class="result-section">
+      <div class="result-card" id="resultCard">
+        <div class="placeholder">点击下方按钮抽一签</div>
+      </div>
+
+      <button class="pick-btn" id="pickBtn" onclick="handlePick()">抽一签！</button>
+    </section>
+
+    <footer class="footer">
+      <span id="shopCount">加载中...</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

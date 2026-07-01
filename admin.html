@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>店铺管理 — 汕大东海岸</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Login Section -->
+    <div id="loginSection" class="login-form">
+      <h2>管理员登录</h2>
+      <div class="form-group">
+        <label for="email">邮箱</label>
+        <input type="email" id="email" placeholder="请输入邮箱">
+      </div>
+      <div class="form-group">
+        <label for="password">密码</label>
+        <input type="password" id="password" placeholder="请输入密码">
+      </div>
+      <button class="submit-btn" onclick="handleLogin()">登录</button>
+      <div id="loginError" class="error-msg"></div>
+    </div>
+
+    <!-- Admin Section -->
+    <div id="adminSection" class="hidden">
+      <div class="admin-header">
+        <h1>店铺管理</h1>
+        <button class="logout-btn" onclick="handleLogout()">退出登录</button>
+      </div>
+
+      <div class="admin-toolbar">
+        <input type="text" class="search-input" id="searchInput"
+               placeholder="搜索店铺..." oninput="handleSearch(this.value)">
+        <button class="add-btn" onclick="openAddModal()">+ 新增</button>
+      </div>
+
+      <div class="shop-table" id="shopTable">
+        <table>
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>食堂</th>
+              <th>分类</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="shopTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>汕大东海岸校区 · 吃饭抽签器</span>
+    </footer>
+  </div>
+
+  <!-- Shop Form Modal -->
+  <div class="modal-overlay" id="shopModal">
+    <div class="modal">
+      <h3 id="modalTitle">新增店铺</h3>
+      <div class="form-group">
+        <label for="shopName">店铺名称</label>
+        <input type="text" id="shopName" placeholder="如一饭粿条">
+      </div>
+      <div class="form-group">
+        <label for="shopCanteen">所属食堂</label>
+        <select id="shopCanteen">
+          <option value="一饭">一饭</option>
+          <option value="二饭">二饭</option>
+          <option value="三饭">三饭</option>
+          <option value="D饭">D饭</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>分类（可多选）</label>
+        <div class="checkbox-group" id="categoryCheckboxes"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="cancel-btn" onclick="closeModal()">取消</button>
+        <button class="confirm-btn" id="modalConfirmBtn" onclick="handleSaveShop()">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal">
+      <h3>确认删除</h3>
+      <p style="color: #5a554f; margin-bottom: 8px;" id="deleteConfirmText">确定要删除这个店铺吗？</p>
+      <div class="modal-actions">
+        <button class="cancel-btn" onclick="closeDeleteModal()">取消</button>
+        <button class="confirm-btn danger" onclick="handleDeleteShop()">删除</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
